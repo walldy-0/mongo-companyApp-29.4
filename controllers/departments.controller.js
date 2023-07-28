@@ -38,7 +38,7 @@ exports.post = async (req, res) => {
     const { name } = req.body;
     const newDepartment = new Department({ name: name });
     await newDepartment.save();
-    res.json(newDepartment);
+    res.json({ message: 'OK' });
 
   } catch(err) {
     res.status(500).json({ message: err });
@@ -66,7 +66,7 @@ exports.delete = async (req, res) => {
     const dep = await Department.findById(req.params.id);
     if(dep) {
       await Department.deleteOne({ _id: req.params.id });
-      res.json(dep);
+      res.json({ message: 'OK' });
     }
     else res.status(404).json({ message: 'Not found...' });
   }
